@@ -1,0 +1,38 @@
+Conf t
+hostname Router-HQ
+username Shufel privilege 15 password 1234
+enable secret 1234
+ip domain name Shufel.lab
+crypto key generate rsa modulus 2048
+line vty 0 4
+login local
+transport input ssh
+exit
+service password-encryption
+int loopback 0 
+ip address 1.1.1.1 255.255.255.255
+exit
+int e0/1
+ip address 192.168.10.1 255.255.255.252
+ip ospf 1 area 0
+ip ospf network point-to-point
+no shutdown
+exit
+int e0/2
+ip address 192.168.20.1 255.255.255.252
+ip ospf 1 area 0
+ip ospf network point-to-point
+no shutdown
+exit
+int e0/0 
+ip address 192.168.30.1 255.255.255.192
+no shutdown
+exit
+ip route 10.10.10.0 255.255.255.192 192.168.30.2
+ip route 10.10.30.0 255.255.255.192 192.168.30.2
+router ospf 1
+redistribute static subnets
+exit
+router ospf 1
+network 1.1.1.1 0.0.0.0 area 0
+exit
