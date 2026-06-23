@@ -10,6 +10,9 @@ transport input ssh
 exit
 service password-encryption
 ip default-gatway 10.10.10.62
+no ip routing
+ip http secure-server
+ip http authentication local
 int vlan 10
 ip address 10.10.10.61 255.255.255.192
 no shutdown

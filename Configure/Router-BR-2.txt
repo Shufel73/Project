@@ -9,6 +9,8 @@ login local
 transport input ssh
 exit
 service password-encryption
+ip http secure-server
+ip http authentication local
 int loopback 0
 ip address 3.3.3.3 255.255.255.255
 exit
