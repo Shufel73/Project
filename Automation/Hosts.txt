@@ -1,0 +1,13 @@
+[cisco_devices]
+Router-HQ ansible_host=1.1.1.1
+Router-BR-1 ansible_host=2.2.2.2
+Router-BR-2 ansible_host=3.3.3.3
+SW-BR-1 ansible_host=10.10.10.125
+SW-BR-2 ansible_host=10.10.10.189
+SW-HQ-CORE ansible_host=10.10.10.61
+
+[cisco_devices:vars]
+ansible_user=Shufel
+ansible_password=1234
+ansible_connection=network_cli
+ansible_network_os=cisco.ios.ios

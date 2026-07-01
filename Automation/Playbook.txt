@@ -1,0 +1,15 @@
+---
+- name: Push MOTD Banner to Cisco Devices
+  hosts: cisco_devices
+  gather_facts: no
+
+  tasks:
+    - name: Configure Hellow to my network banner
+      cisco.ios.ios_banner:
+        banner: motd
+        text: |
+          ************************************
+                  Hellow to my network
+          ************************************
+        state: present
+
