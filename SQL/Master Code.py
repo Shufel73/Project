@@ -1,6 +1,13 @@
 import mysql.connector
-from netmiko import ConnectHandler
+import telebot
 
+TOKEN = '8736662652:AAGuPXyCl68TFTtDaaWGnQi7F8bQrvYcLyM'
+CHAT_ID = '339484533'
+bot = telebot.TeleBot(TOKEN)
+from netmiko import ConnectHandler
+def send_telegram_alert(device_name, error_msg):
+    text = f"🚨 *NETWORK ALERT* 🚨\n\nDevice: {device_name}\nStatus: DOWN\nError: {error_msg}"
+    bot.send_message(CHAT_ID, text,)
 
 devices = [
     {
@@ -91,13 +98,16 @@ try:
             net_connect.disconnect()
 
         except Exception as e:
-            
-            error_msg = str(e)[:200] 
+            error_msg = str(e)[:200]
             values = (device['device_name'], 'DOWN', f"SSH Failed: {error_msg}")
+            
+            
             cursor.execute(sql, values)
             db_connection.commit()
             
-            print(f"[-] FAILED: Logged {device['device_name']} as DOWN in database.")
+            
+            print(f"[-] FAILED: Logged {device['device_name']} as DOWN. Sending alert...")
+            send_telegram_alert(device['device_name'], error_msg)
 
 except mysql.connector.Error as err:
     print(f"Database error: {err}")
