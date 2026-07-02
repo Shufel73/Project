@@ -1,7 +1,7 @@
 # Enterprise Network Automation Lab
 ## Network Topology
 
-![Network Topology](images/topology.png)
+![Network Topology](images/Topology.png)
 
 ## Overview
 
