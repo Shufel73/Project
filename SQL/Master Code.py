@@ -1,8 +1,8 @@
 import mysql.connector
 import telebot
 
-TOKEN = '8736662652:AAGuPXyCl68TFTtDaaWGnQi7F8bQrvYcLyM'
-CHAT_ID = '339484533'
+TOKEN = '???????????????'
+CHAT_ID = '??????????????'
 bot = telebot.TeleBot(TOKEN)
 from netmiko import ConnectHandler
 def send_telegram_alert(device_name, error_msg):
